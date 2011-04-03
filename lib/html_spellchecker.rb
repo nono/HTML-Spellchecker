@@ -56,7 +56,7 @@ class Nokogiri::XML::Text
 
   def spellcheck(dict)
     to_xhtml(:encoding => 'UTF-8').gsub(WORDS_REGEXP) do |word|
-      dict.check(word) ? word : "<mark class=\"misspelled\">#{word}</mark>"
+      dict.check(word) ? word : "<span class=\"misspelled\">#{word}</span>"
     end
   end
 end

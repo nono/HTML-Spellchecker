@@ -14,7 +14,7 @@ describe HTML_Spellchecker do
 
   it "marks spelling errors" do
     incorrect = "<p>xzqwy is not a word!</p>"
-    checker.spellcheck(incorrect) == "<p><mark class=\"misspelled\">xzqwy</span> is not a word!</p>"
+    checker.spellcheck(incorrect) == "<p><span class=\"misspelled\">xzqwy</span> is not a word!</p>"
   end
 
   it "doesn't try to spellcheck code tags" do
@@ -24,12 +24,18 @@ describe HTML_Spellchecker do
 
   it "can use different dictionnaries" do
     french_text = "<p>Ceci est un texte correct, mais xzqwy n'est pas un mot</p>"
-    expected = french_text.gsub('xzqwy', '<mark class="misspelled">xzqwy</mark>')
+    expected = french_text.gsub('xzqwy', '<span class="misspelled">xzqwy</span>')
     HTML_Spellchecker.french.spellcheck(french_text).should == expected
   end
 
   it "can spellcheck nested tags" do
     txt = "<p>This is <strong>Important and <em>xzqwy</em></strong>!</p>"
-    checker.spellcheck(txt).should == txt.gsub('xzqwy', '<mark class="misspelled">xzqwy</mark>')
+    checker.spellcheck(txt).should == txt.gsub('xzqwy', '<span class="misspelled">xzqwy</span>')
+  end
+
+  it "does not mangle spaces between 2 incorrect words" do
+    txt = "<p>xxx yyy zzz</p>"
+    expected = "<p>xxx yyy zzz</p>".gsub(/(\w{3})/, '<span class="misspelled">\1</span>')
+    checker.spellcheck(txt).should == expected
   end
 end
