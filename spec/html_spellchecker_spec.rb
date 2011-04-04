@@ -38,4 +38,19 @@ describe HTML_Spellchecker do
     expected = "<p>xxx yyy zzz</p>".gsub(/(\w{3})/, '<span class="misspelled">\1</span>')
     checker.spellcheck(txt).should == expected
   end
+
+  it "keeps <, > and & untouched" do
+    txt = "<p>Inferior: &lt;</p><p>Superior: &gt;</p><p>Ampersand: &amp;</p>"
+    checker.spellcheck(txt).should == txt
+  end
+
+  it "preserves accents" do
+    txt = "<p>café caf&eacute;</p>"
+    HTML_Spellchecker.french.spellcheck(txt).should !~ /misspelled/
+  end
+
+  it "does not split words with a quote" do
+    txt = "<p>It doesn't matter</p>"
+    checker.spellcheck(txt).should == txt
+  end
 end

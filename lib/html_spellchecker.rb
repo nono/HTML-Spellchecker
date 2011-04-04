@@ -52,11 +52,16 @@ class Nokogiri::XML::Node
 end
 
 class Nokogiri::XML::Text
-  WORDS_REGEXP = RUBY_VERSION =~ /^1\.8/ ? /\w+/ : /\p{Word}+/
+  WORDS_REGEXP = RUBY_VERSION =~ /^1\.8/ ? /(&\w+;)|([\w']+)/ : /(&\p{Word}{2,3};)|([\p{Word}']+)/
+  ENTITIES = ["&gt;", "&lt;", "&amp;"]
 
   def spellcheck(dict)
     to_xhtml(:encoding => 'UTF-8').gsub(WORDS_REGEXP) do |word|
-      dict.check(word) ? word : "<span class=\"misspelled\">#{word}</span>"
+      if ENTITIES.include?(word) || dict.check(word)
+        word
+      else
+        "<span class=\"misspelled\">#{word}</span>"
+      end
     end
   end
 end
