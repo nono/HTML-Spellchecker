@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name             = "html_spellchecker"
-  s.version          = "0.1.5"
+  s.version          = "0.1.6"
   s.date             = Time.now.utc.strftime("%Y-%m-%d")
   s.homepage         = "http://github.com/nono/HTML-Spellchecker"
   s.authors          = "Bruno Michel"
