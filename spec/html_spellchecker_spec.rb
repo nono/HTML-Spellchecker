@@ -46,7 +46,7 @@ describe HTML_Spellchecker do
 
   it "preserves accents" do
     txt = "<p>café caf&eacute;</p>"
-    HTML_Spellchecker.french.spellcheck(txt).should !~ /misspelled/
+    HTML_Spellchecker.french.spellcheck(txt).should_not =~ /misspelled/
   end
 
   it "does not split words with a quote" do

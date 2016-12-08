@@ -3,7 +3,7 @@ HTML Spellchecker
 
 Wants to spellcheck an HTML string properly? This gem is for you.
 It's powered by [Nokogiri](http://nokogiri.org/) and
-[hunspell-ffi](https://github.com/ahaller/hunspell-ffi)!
+[ffi-hunspell](https://github.com/postmodern/ffi-hunspell)!
 
 
 How to use it
@@ -20,8 +20,8 @@ Or, if you use bundler, add it to your `Gemfile`:
 Then you can use it in your code:
 
     require "html_spellchecker"
-	HTML_Spellchecker.english.spellcheck("<p>This is xzqwy.</p>")
-	# => "<p>This is <mark class="misspelled">xzqwy</mark>.</p>"
+    HTML_Spellchecker.english.spellcheck("<p>This is xzqwy.</p>")
+    # => "<p>This is <mark class="misspelled">xzqwy</mark>.</p>"
 
 The HTML_Spellchecker class can be initialized by giving 2 paths:
 the affinity and dictionnary for hunspell. There are helpers to

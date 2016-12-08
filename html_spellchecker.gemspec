@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name             = "html_spellchecker"
-  s.version          = "0.1.7"
+  s.version          = "0.1.8"
   s.date             = Time.now.utc.strftime("%Y-%m-%d")
   s.homepage         = "http://github.com/nono/HTML-Spellchecker"
   s.authors          = "Bruno Michel"
@@ -12,6 +12,6 @@ Gem::Specification.new do |s|
   s.require_paths    = ["lib"]
   s.rubygems_version = %q{1.3.7}
   s.add_dependency "nokogiri", "~>1.4"
-  s.add_dependency "hunspell-ffi", "=0.1.3"
+  s.add_dependency "ffi-hunspell", "=0.3.1"
   s.add_development_dependency "rspec", "~>2.4"
 end

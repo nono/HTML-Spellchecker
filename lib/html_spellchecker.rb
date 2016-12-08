@@ -1,21 +1,21 @@
 # Encoding: UTF-8
 
-require "hunspell-ffi"
+require "ffi/hunspell"
 require "nokogiri"
 require "set"
 
 
 class HTML_Spellchecker
   def self.english
-    @english ||= self.new("/usr/share/hunspell/en_US.aff", "/usr/share/hunspell/en_US.dic")
+    @english ||= self.new 'en_US'
   end
 
   def self.french
-    @french ||= self.new("/usr/share/hunspell/fr_FR.aff", "/usr/share/hunspell/fr_FR.dic")
+    @french ||= self.new 'fr_FR'
   end
 
-  def initialize(aff, dic)
-    @dict = Hunspell.new(aff, dic)
+  def initialize(lang)
+    @dict = FFI::Hunspell.dict(lang)
   end
 
   def spellcheck(html)
@@ -57,7 +57,7 @@ class Nokogiri::XML::Text
 
   def spellcheck(dict)
     to_xhtml(:encoding => 'UTF-8').gsub(WORDS_REGEXP) do |word|
-      if ENTITIES.include?(word) || dict.check(word)
+      if ENTITIES.include?(word) || dict.check?(word)
         word
       else
         "<span class=\"misspelled\">#{word}</span>"
