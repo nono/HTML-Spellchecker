@@ -10,19 +10,19 @@ How to use it
 -------------
 
 It's very simple. Install it with rubygems:
-
-    gem install html_spellchecker
-
+```sh
+gem install html_spellchecker
+```
 Or, if you use bundler, add it to your `Gemfile`:
-
-    gem "html_spellchecker", :version => "~>0.1"
-
+```sh
+gem "html_spellchecker", :version => "~>0.1"
+```
 Then you can use it in your code:
-
-    require "html_spellchecker"
-    HTML_Spellchecker.english.spellcheck("<p>This is xzqwy.</p>")
-    # => "<p>This is <mark class="misspelled">xzqwy</mark>.</p>"
-
+```rb
+require "html_spellchecker"
+HTML_Spellchecker.english.spellcheck("<p>This is xzqwy.</p>")
+# => "<p>This is <mark class="misspelled">xzqwy</mark>.</p>"
+```
 The HTML_Spellchecker class can be initialized by giving 2 paths:
 the affinity and dictionnary for hunspell. There are helpers to
 create a new instance for english and french dictionnaries.
@@ -43,9 +43,9 @@ Found an issue or have a suggestion? Please report it on
 [Github's issue tracker](http://github.com/nono/HTML-Spellchecker/issues).
 
 If you wants to make a pull request, please check the specs before:
-
-    rspec spec
-
+```sh
+rspec spec
+```
 
 Credits
 -------
